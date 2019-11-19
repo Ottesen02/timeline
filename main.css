@@ -1,0 +1,357 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  overscroll-behavior: none;
+  overflow-y: hidden;
+}
+
+#summerBackground > svg,
+#winterBackground > svg,
+#springBackground > svg,
+#fallBackground > svg {
+  position: fixed;
+  z-index: 0;
+  width: 100vw;
+  height: auto;
+  top: 0;
+  left: 0;
+}
+
+.timeline > svg {
+  height: 115vh;
+  top: -14vh;
+  left: -45vw;
+  position: absolute;
+  z-index: 10;
+}
+
+.wheel > svg {
+  position: fixed;
+  z-index: 20;
+  width: 150px;
+  height: 150px;
+  top: 0px;
+  right: 0px;
+}
+
+#summer,
+#winter,
+#fall,
+#spring {
+  transition: 0.3s;
+  cursor: pointer;
+  transform-box: fill-box;
+}
+
+#summer {
+  transform-origin: bottom right;
+}
+
+#winter {
+  transform-origin: top left;
+}
+
+#fall {
+  transform-origin: bottom left;
+}
+
+#spring {
+  transform-origin: top right;
+}
+
+#summer:hover {
+  transform: scale(1.1) translate(-20px, -20px);
+}
+#winter:hover {
+  transform: scale(1.1) translate(20px, 20px);
+}
+#fall:hover {
+  transform: scale(1.1) translate(20px, -20px);
+}
+#spring:hover {
+  transform: scale(1.1) translate(-20px, 20px);
+}
+
+.summerActive {
+  transform: scale(1.1) translate(-20px, -20px);
+}
+
+.winterActive {
+  transform: scale(1.1) translate(20px, 20px);
+}
+
+.fallActive {
+  transform: scale(1.1) translate(20px, -20px);
+}
+
+.springActive {
+  transform: scale(1.1) translate(-20px, 20px);
+}
+
+.sun {
+  transform-origin: center;
+  transform-box: fill-box;
+  cursor: pointer;
+  animation: rotate 30s infinite linear;
+}
+
+@keyframes rotate {
+  to {
+    transform: rotate(1turn);
+  }
+}
+
+.wobble {
+  animation: wobble linear 10s;
+  animation-iteration-count: 1;
+  transform-origin: 50% 50%;
+}
+
+@keyframes wobble {
+  0% {
+    transform: translate(0px, 0px) rotate(0deg);
+  }
+  15% {
+    transform: translate(-20px, 0px) rotate(-5deg);
+  }
+  30% {
+    transform: translate(16px, 0px) rotate(3deg);
+  }
+  45% {
+    transform: translate(-12px, 0px) rotate(-3deg);
+  }
+  60% {
+    transform: translate(8px, 0px) rotate(2deg);
+  }
+  75% {
+    transform: translate(-4px, 0px) rotate(-1deg);
+  }
+  100% {
+    transform: translate(0px, 0px) rotate(0deg);
+  }
+}
+
+.wobble2 {
+  animation: wobbleFlower linear 5s;
+  animation-iteration-count: infinite;
+  transform-origin: bottom;
+  transform-box: fill-box;
+}
+
+@keyframes wobbleFlower {
+  0% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(-10deg);
+  }
+  50% {
+    transform: rotate(0deg);
+  }
+  75% {
+    transform: rotate(10deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+.cloud {
+  animation: cloud infinite linear 10s;
+}
+
+@keyframes cloud {
+  0% {
+    transform: translateX(0vw);
+    opacity: 0;
+  }
+
+  15% {
+    opacity: 1;
+  }
+
+  85% {
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateX(25vw);
+    opacity: 0;
+  }
+}
+
+.leaf {
+  animation: leaf infinite linear 5s;
+  transform-box: fill-box;
+}
+
+@keyframes leaf {
+  0% {
+    transform: translateY(-25vh) translateX(25vw) rotate(-90deg);
+    opacity: 0;
+  }
+
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateY(75vh) translateX(-25vw) rotate(90deg);
+    opacity: 0;
+  }
+}
+
+.leaf2 {
+  animation: leafTwo infinite linear 8s;
+}
+
+@keyframes leafTwo {
+  0% {
+    transform: translateY(-40vh) translateX(40vw) rotate(-30deg);
+    opacity: 0;
+  }
+
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateY(60vh) translateX(-10vw) rotate(30deg);
+    opacity: 0;
+  }
+}
+
+.hide {
+  display: none;
+}
+
+.sprites {
+  background-size: 1000% 100%;
+  height: 200px;
+  width: 200px;
+  position: fixed;
+  z-index: 5;
+}
+
+.begin {
+  animation: decompose 4s steps(10) forwards 1;
+}
+
+#sprite {
+  background-image: url(/assets/wine_bottle.svg);
+  top: 80vh;
+  left: 30vw;
+}
+
+#sprite2 {
+  background-image: url(/assets/newspaper.svg);
+  top: 55vh;
+  left: 30vw;
+}
+
+#sprite3 {
+  background-image: url(/assets/plastic_bag.svg);
+  top: 71vh;
+  left: 52vw;
+}
+#sprite4 {
+  background-image: url(/assets/hand.svg);
+  top: 74vh;
+  left: 45vw;
+}
+
+#sprite5 {
+  background-image: url(/assets/banana.svg);
+  top: 55vh;
+  left: 40vw;
+}
+
+#sprite6 {
+  background-image: url(/assets/glove.svg);
+  top: 55vh;
+  left: 47vw;
+}
+
+#sprite7 {
+  background-image: url(/assets/soda_can.svg);
+  top: 75vh;
+  left: 40vw;
+}
+#sprite8 {
+  background-image: url(/assets/gum.svg);
+  top: 70vh;
+  left: 30vw;
+}
+#sprite9 {
+  background-image: url(/assets/matches.svg);
+  top: 70vh;
+  left: 35vw;
+}
+#sprite10 {
+  background-image: url(/assets/batteries.svg);
+  top: 66vh;
+  left: 40vw;
+}
+#sprite11 {
+  background-image: url(/assets/cigarette.svg);
+  top: 74vh;
+  left: 33vw;
+}
+
+#trashpile {
+  background-image: url(/assets/trashpile.svg);
+  top: 45vh;
+  left: 30vw;
+  width: 500px;
+  height: 500px;
+  z-index: 4;
+  opacity: 1;
+}
+
+@keyframes decompose {
+  0% {
+    background-position: 0%;
+  }
+
+  100% {
+    background-position: -1000%;
+  }
+}
+
+.snowflake {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background-color: white;
+  border-radius: 100%;
+  left: 0px;
+  top: 0px;
+  box-shadow: 0px 0px 15px white;
+  z-index: 9;
+}
+
+#background {
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+  overflow-y: hidden;
+  z-index: 9;
+}
+
+.noshow {
+  visibility: hidden;
+}
+
+.bgPosition {
+  background-position: -900%;
+}

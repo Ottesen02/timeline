@@ -1,216 +1,160 @@
 "use strict";
 
-window.addEventListener("DOMContentLoaded", start());
+let json = [];
+let chosenLeaf;
+
+window.addEventListener("DOMContentLoaded", start);
+
+// STARTSKÆRM
 
 function start() {
-  console.log("Lets begin.");
+  document.querySelector(".container").addEventListener("click", () => {
+    document.querySelector("#startScreen").classList.add("fade");
+    document
+      .querySelector("#startScreen")
+      .addEventListener("animationend", () => {
+        document.querySelector("#startScreen").classList.add("hide");
+      });
+  });
 
-  getWheel();
+  loadJSON();
+  getSVGS();
 }
 
-async function getWheel() {
-  const wheelSvg = await fetch("/assets/wheel.svg");
-  const wheel = await wheelSvg.text();
+//LOAD JSON FIL + TRÆ
 
-  document.querySelector(".wheel").innerHTML = wheel;
+function loadJSON() {
+  fetch("info.json")
+    .then(response => response.json())
+    .then(jsonData => {
+      json.push(jsonData);
 
-  getSummer();
+      getTree();
+    });
+
+  async function getTree() {
+    const treeSvg = await fetch("/assets/gren.svg");
+    const tree = await treeSvg.text();
+
+    document.querySelector(".timeline").innerHTML = tree;
+    clickLeaves();
+  }
 }
 
-async function getSummer() {
-  const summerSvg = await fetch("/assets/Summer.svg");
-  const summer = await summerSvg.text();
+//INFOBOKSE OG SKRALDEANIMATION
 
-  document.querySelector("#summerBackground").innerHTML = summer;
-  document.querySelector("#summer").classList.add("summerActive");
+function clickLeaves() {
+  document.querySelectorAll(".leaves").forEach(leaf => {
+    leaf.addEventListener("click", showInfo);
+  });
+}
+function showInfo() {
+  console.log(this);
+  let chosenLeaf = this.id;
+  document.querySelector("#infobox").classList.remove("hide");
+  document.querySelector("#infobox").innerHTML = ``;
 
-  getWinter();
+  json[0].forEach(json => {
+    if (chosenLeaf == json.ID) {
+      document.querySelector(
+        "#infobox"
+      ).innerHTML = `<h1>${json.title}</h1><p>${json.text}</p><img src="assets/${json.icon}">`;
+
+      let year = this.dataset.year;
+
+      document.querySelectorAll(".sprites").forEach(sprite => {
+        if (sprite.dataset.year < year) {
+          sprite.classList.add("begin");
+
+          sprite.addEventListener("animationend", () => {
+            sprite.classList.add("hide");
+          });
+        } else if (sprite.dataset.year == year) {
+          sprite.classList.remove("hide");
+          sprite.classList.add("begin");
+
+          sprite.addEventListener("animationend", () => {
+            sprite.classList.add("hide");
+          });
+        } else {
+          sprite.classList.remove("hide");
+          sprite.classList.remove("begin");
+        }
+      });
+    }
+  });
 }
 
-async function getWinter() {
-  const winterSvg = await fetch("/assets/Winter.svg");
-  const winter = await winterSvg.text();
+// LOAD SVGER (BAGGRUND OG SÆSONHJUL)
 
-  document.querySelector("#winterBackground").innerHTML = winter;
+function getSVGS() {
+  async function loadSVGS() {
+    const wheelSvg = await fetch("/assets/wheel.svg");
+    const wheel = await wheelSvg.text();
 
-  getSpring();
+    document.querySelector(".wheel").innerHTML = wheel;
+
+    const summerSvg = await fetch("/assets/backgrounds/Summer.svg");
+    const summer = await summerSvg.text();
+
+    document.querySelector("#summerBackground").innerHTML = summer;
+    document.querySelector("#summer").classList.add("summerActive");
+
+    const winterSvg = await fetch("/assets/backgrounds/Winter.svg");
+    const winter = await winterSvg.text();
+
+    document.querySelector("#winterBackground").innerHTML = winter;
+
+    const fallSvg = await fetch("/assets/backgrounds/Fall.svg");
+    const fall = await fallSvg.text();
+
+    document.querySelector("#fallBackground").innerHTML = fall;
+
+    const springSvg = await fetch("/assets/backgrounds/Spring.svg");
+    const spring = await springSvg.text();
+
+    document.querySelector("#springBackground").innerHTML = spring;
+
+    regButtons();
+    snow();
+  }
+
+  loadSVGS();
 }
 
-async function getSpring() {
-  const springSvg = await fetch("/assets/Spring.svg");
-  const spring = await springSvg.text();
-
-  document.querySelector("#springBackground").innerHTML = spring;
-  getFall();
-}
-
-async function getFall() {
-  const fallSvg = await fetch("/assets/Fall.svg");
-  const fall = await fallSvg.text();
-
-  document.querySelector("#fallBackground").innerHTML = fall;
-
-  getTree();
-}
-
-async function getTree() {
-  const treeSvg = await fetch("/assets/gren.svg");
-  const tree = await treeSvg.text();
-
-  document.querySelector(".timeline").innerHTML = tree;
-
-  regButtons();
-  snow();
-}
+//SKIFT SÆSON
 
 function regButtons() {
-  const winterBG = document.querySelector("#winterBackground");
-  const summerBG = document.querySelector("#summerBackground");
-  const springBG = document.querySelector("#springBackground");
-  const fallBG = document.querySelector("#fallBackground");
-  const summerButton = document.querySelector("#summer");
-  const winterButton = document.querySelector("#winter");
-  const springButton = document.querySelector("#spring");
-  const fallButton = document.querySelector("#fall");
-  const trashPile = document.querySelector("#trashpile");
+  document.querySelectorAll(".buttons").forEach(button => {
+    button.addEventListener("click", () => {
+      let season = button.dataset.season;
 
-  winterButton.addEventListener("click", () => {
-    winterBG.classList.remove("hide");
-    summerBG.classList.add("hide");
-    springBG.classList.add("hide");
-    fallBG.classList.add("hide");
+      document.querySelectorAll(".buttons").forEach(button => {
+        button.classList.remove(`${button.id}` + "Active");
+        document
+          .querySelector(`#${button.id}` + "Background")
+          .classList.add("hide");
+        document.querySelector("#background").classList.add("noshow");
+      });
 
-    winterButton.classList.add("winterActive");
-    summerButton.classList.remove("summerActive");
-    springButton.classList.remove("springActive");
-    fallButton.classList.remove("fallActive");
-
-    document.querySelector("#background").classList.remove("noshow");
-  });
-
-  summerButton.addEventListener("click", () => {
-    winterBG.classList.add("hide");
-    summerBG.classList.remove("hide");
-    springBG.classList.add("hide");
-    fallBG.classList.add("hide");
-
-    winterButton.classList.remove("winterActive");
-    summerButton.classList.add("summerActive");
-    springButton.classList.remove("springActive");
-    fallButton.classList.remove("fallActive");
-
-    document.querySelector("#background").classList.add("noshow");
-  });
-
-  springButton.addEventListener("click", () => {
-    winterBG.classList.add("hide");
-    summerBG.classList.add("hide");
-    springBG.classList.remove("hide");
-    fallBG.classList.add("hide");
-
-    winterButton.classList.remove("winterActive");
-    summerButton.classList.remove("summerActive");
-    springButton.classList.add("springActive");
-    fallButton.classList.remove("fallActive");
-
-    document.querySelector("#background").classList.add("noshow");
-  });
-
-  fallButton.addEventListener("click", () => {
-    winterBG.classList.add("hide");
-    summerBG.classList.add("hide");
-    springBG.classList.add("hide");
-    fallBG.classList.remove("hide");
-
-    winterButton.classList.remove("winterActive");
-    summerButton.classList.remove("summerActive");
-    springButton.classList.remove("springActive");
-    fallButton.classList.add("fallActive");
-
-    document.querySelector("#background").classList.add("noshow");
-  });
-
-  document.querySelector(".sun").addEventListener("click", () => {
-    document.querySelector(".sun").classList.add("rotate");
-    console.log("hej");
-  });
-
-  document.querySelector("#leaf2").addEventListener("click", () => {
-    document.querySelector("#sprite5").classList.add("begin");
-    trashPile.style.backgroundPosition = "-100%";
-    document.querySelector("#sprite5").addEventListener("animationend", () => {
-      document.querySelector("#sprite5").classList.add("hide");
-    });
-  });
-  document.querySelector("#leaf3").addEventListener("click", () => {
-    document.querySelector("#sprite2").classList.add("begin");
-    trashPile.style.backgroundPosition = "-100%";
-    document.querySelector("#sprite2").addEventListener("animationend", () => {
-      document.querySelector("#sprite2").classList.add("hide");
-    });
-  });
-  document.querySelector("#leaf4").addEventListener("click", () => {
-    document.querySelector("#sprite6").classList.add("begin");
-    trashPile.style.backgroundPosition = "-300%";
-    document.querySelector("#sprite6").addEventListener("animationend", () => {
-      document.querySelector("#sprite6").classList.add("hide");
-    });
-  });
-  document.querySelector("#leaf5").addEventListener("click", () => {
-    document.querySelector("#sprite11").classList.add("begin");
-    trashPile.style.backgroundPosition = "-300%";
-    document.querySelector("#sprite11").addEventListener("animationend", () => {
-      document.querySelector("#sprite11").classList.add("hide");
-    });
-  });
-  document.querySelector("#leaf6").addEventListener("click", () => {
-    document.querySelector("#sprite8").classList.add("begin");
-    trashPile.style.backgroundPosition = "-500%";
-    document.querySelector("#sprite8").addEventListener("animationend", () => {
-      document.querySelector("#sprite8").classList.add("hide");
-    });
-  });
-  document.querySelector("#leaf7").addEventListener("click", () => {
-    document.querySelector("#sprite9").classList.add("begin");
-    trashPile.style.backgroundPosition = "-500%";
-    document.querySelector("#sprite9").addEventListener("animationend", () => {
-      document.querySelector("#sprite9").classList.add("hide");
-    });
-  });
-  document.querySelector("#leaf8").addEventListener("click", () => {
-    document.querySelector("#sprite3").classList.add("begin");
-    trashPile.style.backgroundPosition = "-700%";
-    document.querySelector("#sprite3").addEventListener("animationend", () => {
-      document.querySelector("#sprite3").classList.add("hide");
-    });
-  });
-  document.querySelector("#leaf9").addEventListener("click", () => {
-    document.querySelector("#sprite10").classList.add("begin");
-    trashPile.style.backgroundPosition = "-700%";
-    document.querySelector("#sprite10").addEventListener("animationend", () => {
-      document.querySelector("#sprite10").classList.add("hide");
-    });
-    document.querySelector("#sprite4").classList.add("begin");
-    trashPile.style.backgroundPosition = "-700%";
-    document.querySelector("#sprite4").addEventListener("animationend", () => {
-      document.querySelector("#sprite4").classList.add("hide");
-    });
-  });
-  document.querySelector("#leaf10").addEventListener("click", () => {
-    document.querySelector("#sprite7").classList.add("begin");
-    trashPile.style.backgroundPosition = "-900%";
-    document.querySelector("#sprite7").addEventListener("animationend", () => {
-      document.querySelector("#sprite7").classList.add("hide");
-    });
-  });
-  document.querySelector("#leaf11").addEventListener("click", () => {
-    document.querySelector("#sprite").classList.add("begin");
-    trashPile.style.backgroundPosition = "-900%";
-    document.querySelector("#sprite").addEventListener("animationend", () => {
-      document.querySelector("#sprite").classList.add("hide");
+      if (season === "winter") {
+        document.querySelector("#background").classList.remove("noshow");
+        button.classList.add(`${button.id}` + "Active");
+        document
+          .querySelector(`#${button.id}` + "Background")
+          .classList.remove("hide");
+      } else if (button.dataset.season === season) {
+        button.classList.add(`${button.id}` + "Active");
+        document
+          .querySelector(`#${button.id}` + "Background")
+          .classList.remove("hide");
+      } else {
+      }
     });
   });
 }
+
+//SNE
 
 function snow() {
   const SnowFlake = {
@@ -227,7 +171,8 @@ function snow() {
     reset() {
       this.xpos = Math.random() * config.maxX;
       this.ypos = -10;
-      this.speed = Math.random() * (config.maxSpeed - config.minSpeed) + config.minSpeed;
+      this.speed =
+        Math.random() * (config.maxSpeed - config.minSpeed) + config.minSpeed;
       this.element.style.transform = "scale(" + Math.random() + ")";
     },
     show() {

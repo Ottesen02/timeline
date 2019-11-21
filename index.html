@@ -5,29 +5,85 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <link rel="stylesheet" href="main.css" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Lato|Roboto:400,900"
+      rel="stylesheet"
+      type="text/css"
+    />
     <title>Timeline</title>
   </head>
   <body>
+    <div id="startScreen">
+      <section id="falling">
+        <div class="items">
+          <img src="assets/trash/banana.svg" class="flake1" />
+          <img src="assets/trash/cigarette.svg" class="flake2" />
+          <img src="assets/trash/glove.svg" class="flake3" />
+          <img src="assets/trash/gum.svg" class="flake4" />
+          <img src="assets/trash/hand.svg" class="flake5" />
+          <img src="assets/trash/matches.svg" class="flake6" />
+          <img src="assets/trash/newspaper.svg" class="flake7" />
+          <img src="assets/trash/plastic_bag.svg" class="flake8" />
+          <img src="assets/trash/soda_can.svg" class="flake9" />
+          <img src="assets/trash/wine_bottle.svg" class="flake10" />
+        </div>
+      </section>
+      <div class="blackOverlayBox">
+        <h1>Your trash imprint</h1>
+        <p>
+          Follow the timeline and discover how the trash decomposes in nature
+          over time!
+        </p>
+      </div>
+      <!-- Stolen Code from https://codepen.io/mars2601/pen/MKVNMX  -->
+      <div class="container">
+        <a href="#" class="btn">
+          <svg width="277" height="62">
+            <defs>
+              <linearGradient id="grad1">
+                <stop offset="0%" stop-color="#11998e" />
+                <stop offset="100%" stop-color="#38ef7d" />
+              </linearGradient>
+            </defs>
+            <rect
+              x="5"
+              y="5"
+              rx="25"
+              fill="none"
+              stroke="url(#grad1)"
+              width="266"
+              height="50"
+            ></rect>
+          </svg>
+          <span>lets get decomposing</span>
+        </a>
+      </div>
+    </div>
     <div class="wheel"></div>
     <div class="timeline"></div>
     <div id="background" class="noshow"></div>
-    <div id="sprite" class="sprites"></div>
-    <div id="sprite2" class="sprites"></div>
-    <div id="sprite3" class="sprites"></div>
-    <div id="sprite4" class="sprites"></div>
-    <div id="sprite5" class="sprites"></div>
-    <div id="sprite6" class="sprites"></div>
-    <div id="sprite7" class="sprites"></div>
-    <div id="sprite8" class="sprites"></div>
-    <div id="sprite9" class="sprites"></div>
-    <div id="sprite10" class="sprites"></div>
-    <div id="sprite11" class="sprites"></div>
-    <div id="trashpile" class="sprites"></div>
+
+    <div id="wine_bottle" class="sprites" data-year="9"></div>
+    <div id="newspaper" class="sprites" data-year="1"></div>
+    <div id="plastic_bag" class="sprites" data-year="6"></div>
+    <div id="hand" class="sprites" data-year="7"></div>
+    <div id="banana" class="sprites" data-year="0"></div>
+    <div id="glove" class="sprites" data-year="2"></div>
+    <div id="soda_can" class="sprites" data-year="8"></div>
+    <div id="gum" class="sprites" data-year="4"></div>
+    <div id="matches" class="sprites" data-year="5"></div>
+    <div id="batteries" class="sprites" data-year="7"></div>
+    <div id="cigarette" class="sprites" data-year="3"></div>
+
+    <div id="badger" class="animals"></div>
+    <div id="fox" class="animals"></div>
 
     <section id="summerBackground"></section>
     <section id="winterBackground" class="hide"></section>
     <section id="fallBackground" class="hide"></section>
     <section id="springBackground" class="hide"></section>
+
+    <div id="infobox" class="hide"></div>
     <script src="script.js"></script>
   </body>
 </html>

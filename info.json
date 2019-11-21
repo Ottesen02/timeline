@@ -1,0 +1,62 @@
+[
+  {
+    "ID": "leaf1",
+    "title": "Bananapeel",
+    "text": "After 2-5 weeks the bananapeel will be decomposed. Funfact: Bananas float in water, as do apples and watermelons.",
+    "icon": "icons/recycle.png"
+  },
+  {
+    "ID": "leaf2",
+    "title": "Newspaper",
+    "text": "After 6 weeks, the newspaper will be decomposed. Funfact: Berlingske is the oldest newspaper in Denmark, it was first released the 3th of january 1749",
+    "icon": "icons/recycle.png"
+  },
+  {
+    "ID": "leaf3",
+    "title": "Wool Glove",
+    "text": "After 6 months, the wool glove will be decomposed. Funfact: Wool is flame-resistant.",
+    "icon": "icons/recycle.png"
+  },
+  {
+    "ID": "leaf4",
+    "title": "Cigarette butt",
+    "text": "After 1-5 years, the cigarette butt will be decomposed. Funfact: Composed of cellulose acetate, a form of plastic, cigarette butts can persist in the environment as long as other forms of plastic.",
+    "icon": "icons/recycle.png"
+  },
+  {
+    "ID": "leaf5",
+    "title": "Gum",
+    "text": "After 5 years, the gum will be decomposed. Funfact: Chewing gum has also been shown to reduce muscle tension and increase alertness. Chewing gum burns around 11 calories per hour.",
+    "icon": "icons/danger.png"
+  },
+  {
+    "ID": "leaf6",
+    "title": "Matches",
+    "text": "After 13 years, the matches will be decomposed. Funfact: Matches was discovered by mistake, when a scientist tried to rub of the chemicals and accidentally made flames",
+    "icon": "icons/recycle.png"
+  },
+  {
+    "ID": "leaf7",
+    "title": "Plastic bag",
+    "text": "After 20 years, the plastic bag will be decomposed. Funfact: Every second, 160,000 plastic bags are used around the world.",
+    "icon": "icons/danger.png"
+  },
+  {
+    "ID": "leaf8",
+    "title": "Batteries",
+    "text": "After 100 years, the batteries and the your neighbours dead body will be decomposed. Funfact: The amount of nickel-cadmium in the average smartphone battery can pollute more than 600 thousand liters of water.",
+    "icon": "icons/toxic.png"
+  },
+  {
+    "ID": "leaf9",
+    "title": "Soda can",
+    "text": "After 200 years, the soda can will be decomposed. Funfact: It takes more energy to mine and produce aluminium than any other metal. The energy it takes to make 4 soda cans is equivalent to filling 1 of these cans with gasoline.",
+    "icon": "icons/danger.png"
+  },
+  {
+    "ID": "leaf10",
+    "title": "Winebottle",
+    "text": "After 4000-1mil. years, the winebottle will be decomposed. Funfact: The energy saved from recycling one glass bottle can run a 100-watt light bulb for four hours. It also causes 20% less air pollution and 50% less water pollution than when a new bottle is made from raw materials.",
+    "icon": "icons/danger.png"
+  }
+]

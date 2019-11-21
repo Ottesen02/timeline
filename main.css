@@ -1,3 +1,5 @@
+/* GENERELT */
+
 * {
   margin: 0;
   padding: 0;
@@ -9,6 +11,305 @@ body {
   overflow-y: hidden;
 }
 
+.hide {
+  display: none;
+}
+
+.noshow {
+  visibility: hidden;
+}
+
+h1,
+p {
+  font-family: "Roboto";
+}
+
+h1 {
+  font-size: 20px;
+}
+
+p {
+  font-size: 15px;
+}
+
+/* STARTSKÆRM */
+
+#startScreen {
+  background-image: url(/assets/backgrounds/FORREST-01.png);
+  z-index: 100;
+  height: 100vh;
+  width: 100vw;
+  background-size: cover;
+  position: fixed;
+  background-position: center;
+}
+
+.blackOverlayBox {
+  position: relative;
+  background-color: rgba(0, 0, 0, 0.4);
+  width: 40vw;
+  height: min-content;
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  min-width: 350px;
+  transform: translate(-50%, -50%);
+  font-family: "Roboto";
+  color: #eeeeee;
+  text-align: center;
+}
+
+.blackOverlayBox > h1 {
+  text-transform: uppercase;
+  margin: 30px 10px;
+}
+
+.blackOverlayBox > p {
+  margin: 0 20px 30px;
+  font-size: 17px;
+}
+
+/* Stolen Code from https://codepen.io/mars2601/pen/MKVNMX */
+
+.container {
+  height: 100%;
+  position: absolute;
+  top: 75%;
+  left: 50%;
+  transform: translate(-50%, -40%);
+}
+
+.btn {
+  margin-top: calc(50% + 25px);
+  position: relative;
+  display: inline-block;
+  width: 277px;
+  height: 50px;
+  font-size: 1em;
+  font-weight: bold;
+  line-height: 60px;
+  text-align: center;
+  text-transform: uppercase;
+  background-color: transparent;
+  cursor: pointer;
+  text-decoration: none;
+  font-family: "Roboto", sans-serif;
+  font-weight: 900;
+  font-size: 17px;
+  letter-spacing: 0.045em;
+  animation: pulse alternate infinite 1s ease;
+}
+
+.btn svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.btn svg rect {
+  stroke-width: 4;
+  stroke-dasharray: 353, 0;
+  stroke-dashoffset: 0;
+  -webkit-transition: all 600ms ease;
+  transition: all 600ms ease;
+}
+
+.btn span {
+  background: linear-gradient(to right, #002007 0%, #123a00 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.btn:hover svg rect {
+  stroke-width: 4;
+  stroke-dasharray: 196, 543;
+  stroke-dashoffset: 437;
+}
+
+@keyframes pulse {
+  to {
+    transform: scale(1.1);
+  }
+}
+
+.fade {
+  animation: fade 0.5s ease;
+  animation-iteration-count: 1;
+}
+
+@keyframes fade {
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes drop {
+  0% {
+  }
+}
+
+@keyframes shake {
+  2%,
+  18% {
+    transform: translate3d(-0.5px, 0, 0);
+  }
+
+  4%,
+  16% {
+    transform: translate3d(1px, 0, 0);
+  }
+
+  6%,
+  10%,
+  14% {
+    transform: translate3d(-1.5px, 0, 0);
+  }
+
+  8%,
+  12% {
+    transform: translate3d(2px, 0, 0);
+  }
+}
+
+/* FALDENDE SKRALD */
+.items {
+  width: 100vw;
+  margin-left: 50px;
+}
+
+#falling {
+  overflow: hidden;
+}
+
+section .items img {
+  width: 120px;
+  margin: 0 5vw 6vw;
+  opacity: 0;
+  transform-origin: 0px 0px;
+  animation-name: falling;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+}
+.flake1 {
+  left: 20px;
+  animation-duration: 2.5s;
+}
+.flake2 {
+  left: 40px;
+  animation-duration: 2.7s;
+  animation-delay: 0.2s;
+}
+.flake3 {
+  left: 60px;
+  animation-duration: 2.9s;
+  animation-delay: 0.4s;
+}
+.flake4 {
+  left: 80px;
+  animation-duration: 2.4s;
+  animation-delay: 0s;
+}
+
+.flake5 {
+  left: 100px;
+  animation-duration: 2.4s;
+  animation-delay: 1s;
+}
+.flake6 {
+  left: 150px;
+  animation-duration: 2.2s;
+  animation-delay: 1.2s;
+}
+.flake7 {
+  left: 170px;
+  animation-duration: 2.7s;
+  animation-delay: 1.2s;
+}
+.flake8 {
+  left: 200px;
+  animation-duration: 2.7s;
+  animation-delay: 0.2s;
+}
+.flake9 {
+  left: 220px;
+  animation-duration: 3s;
+  animation-delay: 0.1s;
+}
+.flake10 {
+  left: 240px;
+  animation-duration: 3s;
+  animation-delay: 1.4s;
+}
+
+@keyframes falling {
+  0% {
+    transform: translateY(0px);
+    opacity: 0;
+  }
+
+  50% {
+    transform: translateY(50px);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateY(100px);
+    opacity: 0.3;
+  }
+}
+
+/* TIDSLINJE */
+
+.timeline > svg {
+  height: 104vh;
+  top: -2vh;
+  left: -115vw;
+  position: absolute;
+  z-index: 10;
+}
+
+.leafy {
+  cursor: pointer;
+}
+
+.shake {
+  animation: shake 3s cubic-bezier(0.36, 0.07, 0.19, 0.97) both infinite;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+.tree-cls-2 {
+  cursor: pointer;
+  transform-box: fill-box;
+  transform-origin: top;
+}
+
+#infobox {
+  background-color: rgb(122, 104, 77);
+  box-shadow: 18px 24px 33px -8px rgba(0, 0, 0, 0.75);
+  width: 230px;
+  height: 295px;
+  position: fixed;
+  right: 30px;
+  bottom: 30px;
+  z-index: 100;
+  border-radius: 25px;
+  padding: 20px;
+}
+
+#infobox img {
+  width: 40px;
+  height: 40px;
+  position: fixed;
+  right: 120px;
+  bottom: 43px;
+}
+
+/* SÆSONER */
+
 #summerBackground > svg,
 #winterBackground > svg,
 #springBackground > svg,
@@ -19,14 +320,6 @@ body {
   height: auto;
   top: 0;
   left: 0;
-}
-
-.timeline > svg {
-  height: 115vh;
-  top: -14vh;
-  left: -45vw;
-  position: absolute;
-  z-index: 10;
 }
 
 .wheel > svg {
@@ -63,34 +356,24 @@ body {
   transform-origin: top right;
 }
 
-#summer:hover {
-  transform: scale(1.1) translate(-20px, -20px);
-}
-#winter:hover {
-  transform: scale(1.1) translate(20px, 20px);
-}
-#fall:hover {
-  transform: scale(1.1) translate(20px, -20px);
-}
-#spring:hover {
-  transform: scale(1.1) translate(-20px, 20px);
-}
-
+#summer:hover,
 .summerActive {
   transform: scale(1.1) translate(-20px, -20px);
 }
-
+#winter:hover,
 .winterActive {
   transform: scale(1.1) translate(20px, 20px);
 }
-
+#fall:hover,
 .fallActive {
   transform: scale(1.1) translate(20px, -20px);
 }
-
+#spring:hover,
 .springActive {
   transform: scale(1.1) translate(-20px, 20px);
 }
+
+/* SÆSON ANIMATIONER */
 
 .sun {
   transform-origin: center;
@@ -102,36 +385,6 @@ body {
 @keyframes rotate {
   to {
     transform: rotate(1turn);
-  }
-}
-
-.wobble {
-  animation: wobble linear 10s;
-  animation-iteration-count: 1;
-  transform-origin: 50% 50%;
-}
-
-@keyframes wobble {
-  0% {
-    transform: translate(0px, 0px) rotate(0deg);
-  }
-  15% {
-    transform: translate(-20px, 0px) rotate(-5deg);
-  }
-  30% {
-    transform: translate(16px, 0px) rotate(3deg);
-  }
-  45% {
-    transform: translate(-12px, 0px) rotate(-3deg);
-  }
-  60% {
-    transform: translate(8px, 0px) rotate(2deg);
-  }
-  75% {
-    transform: translate(-4px, 0px) rotate(-1deg);
-  }
-  100% {
-    transform: translate(0px, 0px) rotate(0deg);
   }
 }
 
@@ -231,9 +484,75 @@ body {
   }
 }
 
-.hide {
-  display: none;
+/* DYR */
+
+.animals {
+  background-size: 1000% 100%;
+  height: 200px;
+  width: 200px;
+  position: fixed;
+  z-index: 5;
+
+  animation: animals 3s steps(10) infinite both;
 }
+
+#badger {
+  background-image: url(/assets/badger.svg);
+  top: 50vh;
+  left: 10vw;
+  animation: badger 10s steps(5) infinite both 3s;
+}
+#fox {
+  background-image: url(/assets/fox.svg);
+  bottom: 5vh;
+  right: 5vw;
+  animation: fox 5s steps(10) infinite both 5s;
+}
+
+@keyframes badger {
+  0% {
+    background-position: 0%;
+    transform: translateX(-500px);
+  }
+
+  25% {
+    background-position: -0%;
+    transform: translateX(0px);
+  }
+
+  50% {
+    background-position: -500%;
+    transform: translateX(0px);
+  }
+
+  75% {
+    background-position: -0%;
+    transform: translateX(0px);
+  }
+
+  100% {
+    background-position: 0%;
+    transform: translateX(-500px);
+  }
+}
+@keyframes fox {
+  0% {
+    background-position: 0%;
+    transform: translateX(500px);
+  }
+
+  50% {
+    background-position: -1000%;
+    transform: translateX(0px);
+  }
+
+  100% {
+    background-position: 0%;
+    transform: translateX(500px);
+  }
+}
+
+/* SKRALD */
 
 .sprites {
   background-size: 1000% 100%;
@@ -244,78 +563,75 @@ body {
 }
 
 .begin {
-  animation: decompose 4s steps(10) forwards 1;
+  animation: decompose 3s steps(10) forwards 1;
 }
 
-#sprite {
-  background-image: url(/assets/wine_bottle.svg);
-  top: 80vh;
-  left: 30vw;
+#wine_bottle {
+  background-image: url(/assets/sprites/wine_bottle.svg);
+  top: 75vh;
+  left: 10vw;
+  transform: rotateX(30deg) rotateY(0deg) rotateZ(30deg);
 }
 
-#sprite2 {
-  background-image: url(/assets/newspaper.svg);
-  top: 55vh;
-  left: 30vw;
+#newspaper {
+  background-image: url(/assets/sprites/newspaper.svg);
+  top: 50vh;
+  left: 32vw;
+  transform: scale(0.5) rotateX(30deg) rotateY(0deg) rotateZ(-30deg);
 }
 
-#sprite3 {
-  background-image: url(/assets/plastic_bag.svg);
+#plastic_bag {
+  background-image: url(/assets/sprites/plastic_bag.svg);
   top: 71vh;
-  left: 52vw;
+  left: 70vw;
+  transform: rotateX(45deg) rotateY(30deg);
 }
-#sprite4 {
-  background-image: url(/assets/hand.svg);
-  top: 74vh;
+#hand {
+  background-image: url(/assets/sprites/hand.svg);
+  top: 65vh;
+  left: 55vw;
+  transform: rotateX(30deg) rotateY(0deg) rotateZ(30deg);
+}
+
+#banana {
+  background-image: url(/assets/sprites/banana.svg);
+  top: 68vh;
+  left: 20vw;
+  transform: rotateX(45deg) rotateY(20deg) rotateZ(30deg);
+}
+
+#glove {
+  background-image: url(/assets/sprites/glove.svg);
+  top: 50vh;
   left: 45vw;
+  transform: rotateX(50deg) rotateY(0deg) rotateZ(30deg);
 }
 
-#sprite5 {
-  background-image: url(/assets/banana.svg);
-  top: 55vh;
-  left: 40vw;
-}
-
-#sprite6 {
-  background-image: url(/assets/glove.svg);
-  top: 55vh;
-  left: 47vw;
-}
-
-#sprite7 {
-  background-image: url(/assets/soda_can.svg);
+#soda_can {
+  background-image: url(/assets/sprites/soda_can.svg);
   top: 75vh;
   left: 40vw;
+  transform: rotateX(20deg) rotateY(20deg) rotateZ(-30deg);
 }
-#sprite8 {
-  background-image: url(/assets/gum.svg);
+#gum {
+  background-image: url(/assets/sprites/gum.svg);
   top: 70vh;
   left: 30vw;
 }
-#sprite9 {
-  background-image: url(/assets/matches.svg);
+#matches {
+  background-image: url(/assets/sprites/matches.svg);
   top: 70vh;
   left: 35vw;
 }
-#sprite10 {
-  background-image: url(/assets/batteries.svg);
-  top: 66vh;
-  left: 40vw;
+#batteries {
+  background-image: url(/assets/sprites/batteries.svg);
+  top: 73vh;
+  left: 60vw;
 }
-#sprite11 {
-  background-image: url(/assets/cigarette.svg);
+#cigarette {
+  background-image: url(/assets/sprites/cigarette.svg);
   top: 74vh;
   left: 33vw;
-}
-
-#trashpile {
-  background-image: url(/assets/trashpile.svg);
-  top: 45vh;
-  left: 30vw;
-  width: 500px;
-  height: 500px;
-  z-index: 4;
-  opacity: 1;
 }
 
 @keyframes decompose {
@@ -327,6 +643,8 @@ body {
     background-position: -1000%;
   }
 }
+
+/* SNE */
 
 .snowflake {
   position: absolute;
@@ -346,12 +664,4 @@ body {
   position: fixed;
   overflow-y: hidden;
   z-index: 9;
-}
-
-.noshow {
-  visibility: hidden;
-}
-
-.bgPosition {
-  background-position: -900%;
 }

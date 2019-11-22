@@ -491,7 +491,8 @@ section .items img {
   height: 200px;
   width: 200px;
   position: fixed;
-  z-index: 5;
+  z-index: 99;
+  cursor: pointer;
 
   animation: animals 3s steps(10) infinite both;
 }
@@ -514,25 +515,13 @@ section .items img {
     background-position: 0%;
     transform: translateX(-500px);
   }
-
-  25% {
-    background-position: -0%;
-    transform: translateX(0px);
-  }
-
   50% {
-    background-position: -500%;
-    transform: translateX(0px);
+    background-position: -1000%;
+    transform: translateX(500px);
   }
-
-  75% {
-    background-position: -0%;
-    transform: translateX(0px);
-  }
-
   100% {
     background-position: 0%;
-    transform: translateX(-500px);
+    transform: translateX(1000px);
   }
 }
 @keyframes fox {

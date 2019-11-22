@@ -14,6 +14,12 @@ function start() {
       .querySelector("#startScreen")
       .addEventListener("animationend", () => {
         document.querySelector("#startScreen").classList.add("hide");
+        document.querySelector("#bgmusic").play();
+        document.querySelector("#bgmusic").loop = true;
+        document.querySelector("#bgsounds").play();
+        document.querySelector("#bgsounds").loop = true;
+        document.querySelector("#bgmusic").volume = 0.2;
+        document.querySelector("#bgsounds").volume = 0.4;
       });
   });
 
@@ -49,7 +55,7 @@ function clickLeaves() {
   });
 }
 function showInfo() {
-  console.log(this);
+  document.querySelector("#leafsound").play();
   let chosenLeaf = this.id;
   document.querySelector("#infobox").classList.remove("hide");
   document.querySelector("#infobox").innerHTML = ``;
@@ -125,6 +131,11 @@ function getSVGS() {
 //SKIFT SÆSON
 
 function regButtons() {
+  document.querySelectorAll(".animals").forEach(animal => {
+    animal.addEventListener("click", () => {
+      document.querySelector("#animalclick").play();
+    });
+  });
   document.querySelectorAll(".buttons").forEach(button => {
     button.addEventListener("click", () => {
       let season = button.dataset.season;

@@ -46,17 +46,19 @@ p {
 
 .blackOverlayBox {
   position: relative;
-  background-color: rgba(0, 0, 0, 0.4);
-  width: 40vw;
+  background-color: rgba(0, 0, 0, 0.6);
+  width: 50vw;
   height: min-content;
   position: absolute;
   top: 40%;
   left: 50%;
-  min-width: 350px;
+  min-width: 375px;
   transform: translate(-50%, -50%);
   font-family: "Roboto";
   color: #eeeeee;
   text-align: center;
+  border: 2px solid #11998e;
+  border-radius: 30px;
 }
 
 .blackOverlayBox > h1 {
@@ -71,17 +73,16 @@ p {
 
 /* Stolen Code from https://codepen.io/mars2601/pen/MKVNMX */
 
-.container {
+/* .container {
   height: 100%;
   position: absolute;
   top: 75%;
   left: 50%;
   transform: translate(-50%, -40%);
-}
+} */
 
 .btn {
-  margin-top: calc(50% + 25px);
-  position: relative;
+  margin: 0 0 30px 0;
   display: inline-block;
   width: 277px;
   height: 50px;
@@ -115,7 +116,7 @@ p {
 }
 
 .btn span {
-  background: linear-gradient(to right, #002007 0%, #123a00 100%);
+  background: linear-gradient(to right, #38ef7d 0%, #11998e 100%);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -141,11 +142,6 @@ p {
 @keyframes fade {
   to {
     opacity: 0;
-  }
-}
-
-@keyframes drop {
-  0% {
   }
 }
 
@@ -265,7 +261,7 @@ section .items img {
 .timeline > svg {
   height: 104vh;
   top: -2vh;
-  left: -115vw;
+  left: -1675px;
   position: absolute;
   z-index: 10;
 }
@@ -535,6 +531,7 @@ section .items img {
     transform: translateX(-500px);
   }
 }
+
 @keyframes fox {
   0% {
     background-position: 0%;

@@ -385,6 +385,19 @@ section .items img {
   }
 }
 
+.sun1 {
+  transform-origin: center;
+  transform-box: fill-box;
+  cursor: pointer;
+  animation: rotate2 20s infinite linear;
+}
+
+@keyframes rotate2 {
+  to {
+    transform: rotate(-1turn);
+  }
+}
+
 .wobble2 {
   animation: wobbleFlower linear 5s;
   animation-iteration-count: infinite;
@@ -676,4 +689,17 @@ section .items img {
   position: fixed;
   overflow-y: hidden;
   z-index: 9;
+}
+
+#ioa {
+  z-index: 1001;
+  position: absolute;
+  top: 220px;
+  left: 5900px;
+  width: 100px;
+  height: 100px;
+}
+.timeline {
+  width: 100vw;
+  overflow-x: scroll;
 }

@@ -10,17 +10,15 @@ window.addEventListener("DOMContentLoaded", start);
 function start() {
   document.querySelector(".container").addEventListener("click", () => {
     document.querySelector("#startScreen").classList.add("fade");
-    document
-      .querySelector("#startScreen")
-      .addEventListener("animationend", () => {
-        document.querySelector("#startScreen").classList.add("hide");
-        document.querySelector("#bgmusic").play();
-        document.querySelector("#bgmusic").loop = true;
-        document.querySelector("#bgsounds").play();
-        document.querySelector("#bgsounds").loop = true;
-        document.querySelector("#bgmusic").volume = 0.2;
-        document.querySelector("#bgsounds").volume = 0.4;
-      });
+    document.querySelector("#startScreen").addEventListener("animationend", () => {
+      document.querySelector("#startScreen").classList.add("hide");
+      document.querySelector("#bgmusic").play();
+      document.querySelector("#bgmusic").loop = true;
+      document.querySelector("#bgsounds").play();
+      document.querySelector("#bgsounds").loop = true;
+      document.querySelector("#bgmusic").volume = 0.2;
+      document.querySelector("#bgsounds").volume = 0.4;
+    });
   });
 
   loadJSON();
@@ -62,9 +60,7 @@ function showInfo() {
 
   json[0].forEach(json => {
     if (chosenLeaf == json.ID) {
-      document.querySelector(
-        "#infobox"
-      ).innerHTML = `<h1>${json.title}</h1><p>${json.text}</p><img src="assets/${json.icon}">`;
+      document.querySelector("#infobox").innerHTML = `<h1>${json.title}</h1><p>${json.text}</p><img src="assets/${json.icon}">`;
 
       let year = this.dataset.year;
 
@@ -124,7 +120,24 @@ function getSVGS() {
     regButtons();
     snow();
   }
-
+  let options = {
+    threshold: 1
+  };
+  let callback = (entries, observer) => {
+    entries.forEach(entry => {
+      console.log(entry);
+      if (entry.intersectionRatio == 1) {
+        document.querySelector("#sun").classList.add("sun1");
+        document.querySelector("#sun").classList.remove("sun");
+      } else {
+        document.querySelector("#sun").classList.remove("sun1");
+        document.querySelector("#sun").classList.add("sun");
+      }
+    });
+  };
+  const observer = new IntersectionObserver(callback, options);
+  const target = document.querySelector("#ioa");
+  observer.observe(target);
   loadSVGS();
 }
 
@@ -142,23 +155,17 @@ function regButtons() {
 
       document.querySelectorAll(".buttons").forEach(button => {
         button.classList.remove(`${button.id}` + "Active");
-        document
-          .querySelector(`#${button.id}` + "Background")
-          .classList.add("hide");
+        document.querySelector(`#${button.id}` + "Background").classList.add("hide");
         document.querySelector("#background").classList.add("noshow");
       });
 
       if (season === "winter") {
         document.querySelector("#background").classList.remove("noshow");
         button.classList.add(`${button.id}` + "Active");
-        document
-          .querySelector(`#${button.id}` + "Background")
-          .classList.remove("hide");
+        document.querySelector(`#${button.id}` + "Background").classList.remove("hide");
       } else if (button.dataset.season === season) {
         button.classList.add(`${button.id}` + "Active");
-        document
-          .querySelector(`#${button.id}` + "Background")
-          .classList.remove("hide");
+        document.querySelector(`#${button.id}` + "Background").classList.remove("hide");
       } else {
       }
     });
@@ -182,8 +189,7 @@ function snow() {
     reset() {
       this.xpos = Math.random() * config.maxX;
       this.ypos = -10;
-      this.speed =
-        Math.random() * (config.maxSpeed - config.minSpeed) + config.minSpeed;
+      this.speed = Math.random() * (config.maxSpeed - config.minSpeed) + config.minSpeed;
       this.element.style.transform = "scale(" + Math.random() + ")";
     },
     show() {

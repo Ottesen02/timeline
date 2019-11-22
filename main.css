@@ -312,8 +312,9 @@ section .items img {
 #fallBackground > svg {
   position: fixed;
   z-index: 0;
-  width: 100vw;
-  height: auto;
+  width: auto;
+  height: 56.25vw;
+  min-height: 100vh;
   top: 0;
   left: 0;
 }
@@ -487,8 +488,8 @@ section .items img {
   height: 200px;
   width: 200px;
   position: fixed;
-  z-index: 5;
-
+  z-index: 99;
+  cursor: pointer;
   animation: animals 3s steps(10) infinite both;
 }
 
@@ -496,39 +497,48 @@ section .items img {
   background-image: url(/assets/badger.svg);
   top: 50vh;
   left: 10vw;
-  animation: badger 10s steps(5) infinite both 3s;
+  height: 100px;
+  width: 100px;
+  animation: badger 25s steps(10) infinite;
 }
 #fox {
   background-image: url(/assets/fox.svg);
   bottom: 5vh;
   right: 5vw;
-  animation: fox 5s steps(10) infinite both 5s;
+  animation: fox 10s steps(10) infinite;
 }
 
 @keyframes badger {
   0% {
+    opacity: 0;
     background-position: 0%;
-    transform: translateX(-500px);
+    transform: translateX(18vw);
   }
 
+  1% {
+    opacity: 1;
+    background-position: 0%;
+    transform: translateX(18vw);
+  }
   25% {
-    background-position: -0%;
-    transform: translateX(0px);
+    background-position: -1000%;
+    transform: translateX(1000px) rotateY(0);
+  }
+  26% {
+    transform: translateX(1000px) rotateY(180deg);
   }
 
   50% {
-    background-position: -500%;
-    transform: translateX(0px);
+    background-position: 0%;
+    transform: translateX(18vw) rotateY(180deg);
+    opacity: 1;
   }
-
-  75% {
-    background-position: -0%;
-    transform: translateX(0px);
+  51% {
+    opacity: 0;
   }
 
   100% {
-    background-position: 0%;
-    transform: translateX(-500px);
+    opacity: 0;
   }
 }
 
@@ -538,12 +548,17 @@ section .items img {
     transform: translateX(500px);
   }
 
-  50% {
+  30% {
     background-position: -1000%;
-    transform: translateX(0px);
+    transform: translateX(0px) rotateY(0);
   }
 
-  100% {
+  40% {
+    background-position: -1000%;
+    transform: translateX(0px) rotateY(180deg);
+  }
+
+  70% {
     background-position: 0%;
     transform: translateX(500px);
   }
